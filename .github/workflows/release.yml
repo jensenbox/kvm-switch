@@ -19,8 +19,10 @@ jobs:
             os: ubuntu-latest
           - target: aarch64-apple-darwin
             os: macos-14
-          - target: x86_64-apple-darwin
-            os: macos-13
+          # x86_64-apple-darwin intentionally dropped — macos-13 runners are
+          # extremely slow to acquire on free public-repo concurrency. Modern
+          # Macs are Apple Silicon. Intel-Mac users can build from source for
+          # now, or we can add a cross-compile target on macos-14 later.
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

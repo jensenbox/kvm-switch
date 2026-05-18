@@ -36,7 +36,12 @@ case "$uname_s" in
 esac
 
 case "$uname_m" in
-    x86_64|amd64) arch="x86_64" ;;
+    x86_64|amd64)
+        if [ "$uname_s" = "Darwin" ]; then
+            die "Intel Macs are not built in releases (build from source: cargo build --release)"
+        fi
+        arch="x86_64"
+        ;;
     arm64|aarch64)
         if [ "$uname_s" = "Linux" ]; then
             die "Linux aarch64 is not built in releases yet (build from source: cargo build --release)"
