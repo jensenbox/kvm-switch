@@ -72,6 +72,16 @@ No special permissions needed — ddc-hi talks to `CoreDisplay` / `IOKit`. Just 
 
 ## Configure
 
+### The easy way — `kvm-switch setup`
+
+```sh
+kvm-switch setup
+```
+
+Walks you through it: detects the connected DDC monitor, reads the current VCP `0x60` value (that's "this machine"), prompts you to switch to the other computer via the OSD joystick, polls until the value changes, then writes the config silently. You don't need to switch back — re-run the command on the other machine to set up the reverse direction.
+
+### The manual way
+
 Write `~/.config/kvm-switch/config.toml` (Linux) or `~/Library/Application Support/kvm-switch/config.toml` (macOS):
 
 ```toml
@@ -97,12 +107,17 @@ Per-host examples (Gigabyte M32U):
 ## Usage
 
 ```sh
-kvm-switch          # = `switch` — set VCP 0x60 to config's target_input
-kvm-switch switch   # same thing
-kvm-switch list     # list detected displays
-kvm-switch get      # read current VCP 0x60
-kvm-switch set 0x10 # write a value directly (hex)
+kvm-switch                # = `switch` — set VCP 0x60 to config's target_input
+kvm-switch switch         # same thing
+kvm-switch setup          # interactive first-run config writer
+kvm-switch list           # list detected displays
+kvm-switch get            # read current VCP 0x60
+kvm-switch set 0x10       # write a value directly (hex)
+kvm-switch update         # self-update from the latest GitHub release
+kvm-switch update --check # check for a newer version without installing
 ```
+
+`kvm-switch update` downloads the latest release tarball for your OS+arch and swaps the running binary in place. For Homebrew installs, prefer `brew upgrade jensenbox/tap/kvm-switch` instead — the in-place update works but bypasses brew's bookkeeping.
 
 ## Hotkey binding
 

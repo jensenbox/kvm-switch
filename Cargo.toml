@@ -1,6 +1,6 @@
 [package]
 name = "kvm-switch"
-version = "0.1.2"
+version = "0.2.0"
 edition = "2024"
 description = "Cross-platform DDC/CI monitor input switcher for built-in monitor KVMs"
 license = "MIT"
@@ -13,6 +13,7 @@ clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
 toml = "0.8"
 directories = "5"
+self_update = { version = "0.44", default-features = false, features = ["reqwest", "rustls", "compression-flate2"] }
 
 [profile.release]
 lto = true
