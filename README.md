@@ -19,13 +19,29 @@ Because the binary just sends "set input source = X", each host's config holds t
 
 ## Install
 
-### Build
+### One-liner (Linux + macOS)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/jensenbox/kvm-switch/main/install.sh | sh
+```
+
+Downloads the latest signed release tarball for your OS+arch, verifies the SHA-256, and drops the binary in `~/.local/bin` (Linux) or `/usr/local/bin` (macOS, prompts for `sudo`). On Linux it also reminds you to add yourself to the `i2c` group.
+
+Pin a version: `KVM_VERSION=v0.1.0 curl -fsSL .../install.sh | sh`.
+Custom prefix: `KVM_PREFIX=/opt curl -fsSL .../install.sh | sh`.
+
+### Homebrew (macOS / Linux)
+
+```sh
+brew install jensenbox/tap/kvm-switch
+```
+
+### Build from source
 
 ```sh
 git clone https://github.com/jensenbox/kvm-switch
 cd kvm-switch
 cargo build --release
-# binary at target/release/kvm-switch — symlink it somewhere on PATH:
 ln -s "$PWD/target/release/kvm-switch" ~/.local/bin/kvm-switch
 ```
 
