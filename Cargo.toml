@@ -1,6 +1,6 @@
 [package]
 name = "kvm-switch"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 description = "Cross-platform DDC/CI monitor input switcher for built-in monitor KVMs"
 license = "MIT"
